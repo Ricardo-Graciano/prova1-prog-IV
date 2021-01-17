@@ -9,7 +9,7 @@ public class Product {
 	@Id
 	private String id;
 	private String name;
-	private String value;
+	private Double vUnCom;
 	private String picture;
 	private String description;
 
@@ -27,13 +27,16 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-    public String getValue() {
-		return value;
+	
+    public Double getvUnCom() {
+		return vUnCom;
 	}
-	public void setValue(String value) {
-		this.value = value;
+
+	public void setvUnCom(Double vUnCom) {
+		this.vUnCom = vUnCom;
 	}
-    public String getPicture() {
+
+	public String getPicture() {
 		return picture;
 	}
 	public void setPicture(String picture) {
@@ -45,13 +48,15 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -61,12 +66,13 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		if (value == null) {
-			if (other.value != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!value.equals(other.value))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
+	
 	
 }
