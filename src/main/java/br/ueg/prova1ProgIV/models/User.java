@@ -13,8 +13,13 @@ public class User {
 	private String email;
 	private String password;
 	
-	public User() { }
+	public User() {}
 	
+	public User(String id,String name, String email) {
+		this.id = id;
+		this.email =email;
+		this.name = name;
+	}
 	public String getId() {
 		return id;
 	}
