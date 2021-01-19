@@ -6,8 +6,13 @@ public class SellProduct extends Product {
 	private Double vDesc = 0.0;
 	private Double vProd;
 	
-	public SellProduct() {
-
+	public SellProduct() {}
+	
+	public SellProduct( String id, String name, String description, Double qCom) {
+		this.setId(id);
+		this.setName(name);
+		this.setDescription(description);
+		this.qCom = qCom;
 	}
 
 	public Double getqCom() {

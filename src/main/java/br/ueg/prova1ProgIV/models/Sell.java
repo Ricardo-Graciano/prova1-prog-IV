@@ -1,5 +1,6 @@
 package br.ueg.prova1ProgIV.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +23,15 @@ public class Sell {
 	
 	private User seller;
 	private User customer;
-	private List<SellProduct> sellProducts;
+	private List<SellProduct> sellProducts =  new ArrayList<SellProduct>();
 	
-	public Sell() {
+	public Sell() {}
+	public Sell(String id, int number, SellProduct product, User customer, User seller) {
+		this.id = id;
+		this.number = number;
+		this.seller = seller;
+		this.customer = customer;
+		this.sellProducts.add(product);
 	}
 	public String getId() {
 		return id;

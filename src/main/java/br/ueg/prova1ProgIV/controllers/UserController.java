@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.ueg.prova1ProgIV.models.User;
 import br.ueg.prova1ProgIV.services.UserService;
+import br.ueg.prova1ProgIV.services.UserServiceImpl;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -17,15 +18,15 @@ import reactor.core.publisher.Mono;
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 	
 	@PostMapping
 	public Mono<User> saveUser(@RequestBody User user){
-		return userService.saveUser(user);
+		return userService.save(user);
 	}
 	
 	@GetMapping()
 	public Flux<User> findAllUsers(){
-		return userService.findAllUsers();
+		return userService.findAll();
 	}
 }

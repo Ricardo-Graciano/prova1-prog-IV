@@ -1,10 +1,18 @@
 package br.ueg.prova1ProgIV.models;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Document
-public class User {
+public class User implements UserDetails {
 
 	@Id
 	private String id;
@@ -12,7 +20,7 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
-	
+	private Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();	
 	public User() {}
 	
 	public User(String id,String name, String email) {
@@ -44,6 +52,19 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public Set<GrantedAuthority> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<GrantedAuthority> roles) {
+		this.roles = roles;
+	}
+
+	@Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+      return roles;
+    }
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,6 +88,32 @@ public class User {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
