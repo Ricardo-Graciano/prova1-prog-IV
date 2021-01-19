@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ueg.prova1ProgIV.models.User;
-import br.ueg.prova1ProgIV.services.UserService;
 import br.ueg.prova1ProgIV.services.UserServiceImpl;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

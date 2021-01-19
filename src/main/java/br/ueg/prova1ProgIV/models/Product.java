@@ -12,7 +12,8 @@ public class Product {
 	private Double vUnCom;
 	private String picture;
 	private String description;
-
+	private User seller;
+	
 	public Product() {}
 	public Product(String id, String name, String description) {
 		this.id = id;
@@ -53,7 +54,14 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	public User getSeller() {
+		return seller;
+	}
+	public void setSeller(User seller) {
+		this.seller = seller;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
