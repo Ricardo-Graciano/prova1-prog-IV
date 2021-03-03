@@ -1,5 +1,7 @@
 package br.ueg.prova1ProgIV.config;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
@@ -9,6 +11,9 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 import br.ueg.prova1ProgIV.services.UserServiceImpl;
 
@@ -20,6 +25,7 @@ public class SecurityConfig {
 		return http
 				.csrf()
 				.disable()
+				.cors().configurationSource(corsConfigurationSource()).and()
 				.authorizeExchange()
 				.pathMatchers(HttpMethod.GET, "/products/**").permitAll()
 				.pathMatchers(HttpMethod.GET, "/sells/**").permitAll()
@@ -44,4 +50,19 @@ public class SecurityConfig {
 		authenticationManager.setPasswordEncoder(passEncoder);
 	    return authenticationManager;
 	}
+	
+	@Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS",  "HEAD", "TRACE", "CONNECT"));
+        configuration.setAllowCredentials(true);
+        //the below three lines will add the relevant CORS response headers
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 }
