@@ -13,6 +13,7 @@ public class CorsGlobalConfig implements WebFluxConfigurer {
     public void addCorsMappings(CorsRegistry corsRegistry) {
 		corsRegistry.addMapping("/**")
 			.allowedOrigins("*")
+			.allowedHeaders("*")
         	.allowedMethods("*");
     }
 }
