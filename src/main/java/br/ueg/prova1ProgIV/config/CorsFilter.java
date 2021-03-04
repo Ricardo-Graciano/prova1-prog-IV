@@ -1,3 +1,5 @@
+package br.ueg.prova1ProgIV.config;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
