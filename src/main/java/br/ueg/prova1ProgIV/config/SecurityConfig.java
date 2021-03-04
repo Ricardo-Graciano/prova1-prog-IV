@@ -25,6 +25,8 @@ public class SecurityConfig {
 		return http
 				.csrf()
 				.disable()
+				.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
+				.and()
 				.authorizeExchange()
 				.pathMatchers(HttpMethod.GET, "/products/**").permitAll()
 				.pathMatchers(HttpMethod.GET, "/sells/**").permitAll()
