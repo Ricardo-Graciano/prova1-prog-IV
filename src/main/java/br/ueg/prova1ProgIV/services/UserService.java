@@ -4,6 +4,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.ueg.prova1ProgIV.dtos.UserLoginRequestDTO;
 import br.ueg.prova1ProgIV.models.User;
 import br.ueg.prova1ProgIV.repositories.UserRepository;
 import reactor.core.publisher.Flux;
@@ -14,5 +15,6 @@ public interface UserService {
 
 	Flux<User> findAll();
 	Mono<User> save (User user);
+	Mono<User> login (UserLoginRequestDTO user);
 	Mono<User> findByEmail(String email);
 }
