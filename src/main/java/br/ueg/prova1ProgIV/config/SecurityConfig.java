@@ -1,5 +1,6 @@
 package br.ueg.prova1ProgIV.config;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
@@ -22,10 +23,15 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+		final CorsConfiguration configuration = new CorsConfiguration();
+		configuration.applyPermitDefaultValues();
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "HEAD"));
+		System.out.println(configuration.getAllowedMethods().toString());
+		
 		return http
 				.csrf()
 				.disable()
-				.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
+				.cors().configurationSource(request -> configuration)
 				.and()
 				.authorizeExchange()
 				.pathMatchers(HttpMethod.GET, "/products/**").permitAll()
