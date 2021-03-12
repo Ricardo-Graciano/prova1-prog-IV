@@ -1,17 +1,29 @@
 package br.ueg.prova1ProgIV.models;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.validation.annotation.Validated;
 
+@Validated
 @Document
 public class Product {
 
 	@Id
 	private String id;
+
+	@NotBlank(message = "Nome é obrigatório")
 	private String name;
+	
+	@Min(0)
 	private Double vUnCom;
+	
 	private String picture;
 	private String description;
+	
 	private User seller;
 	
 	public Product() {}

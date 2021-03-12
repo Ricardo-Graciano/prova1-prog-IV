@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/sells")
-public class SellController {
+public class SellController extends BaseController {
 	
 	@Autowired
 	private SellService sellService;

@@ -1,13 +1,13 @@
 package br.ueg.prova1ProgIV.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -19,13 +19,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-public class UserController {
+public class UserController extends BaseController {
 
 	@Autowired
 	private UserServiceImpl userService;
 	
 	@PostMapping("/users")
-	public Mono<User> saveUser(@RequestBody User user){
+	public Mono<User> saveUser(@Valid @RequestBody User user){
 		return userService.save(user);
 	}
 	
@@ -35,7 +35,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public Mono<ResponseEntity<UserLoginResponseDTO>> login(@RequestBody UserLoginRequestDTO user){
+	public Mono<ResponseEntity<UserLoginResponseDTO>> login(@Valid @RequestBody UserLoginRequestDTO user){
 		return userService.login(user).switchIfEmpty(monoResponseStatusNotFound());
 	}
 

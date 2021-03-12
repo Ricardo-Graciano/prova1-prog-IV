@@ -4,19 +4,30 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.annotation.Validated;
 
+@Validated
 @Document
 public class User implements UserDetails {
 
 	@Id
 	private String id;
 	
+	@NotBlank(message = "É necessário informar um NOME")
 	private String name;
+	
+	@NotBlank(message = "É necessário informar um EMAIL")
 	private String email;
+	
+	@NotBlank(message = "É necessário informar uma SENHA")
 	private String password;
 	private Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();	
 	public User() {}

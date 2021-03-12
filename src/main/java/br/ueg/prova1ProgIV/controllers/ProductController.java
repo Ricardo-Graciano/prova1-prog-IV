@@ -1,8 +1,12 @@
 package br.ueg.prova1ProgIV.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,9 +14,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.support.WebExchangeBindException;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.ueg.prova1ProgIV.dtos.ProductUpdateDTO;
+import br.ueg.prova1ProgIV.exceptions.InvalidArgumentsResponse;
 import br.ueg.prova1ProgIV.models.Product;
 import br.ueg.prova1ProgIV.services.ProductService;
 import reactor.core.publisher.Flux;
@@ -20,13 +26,13 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/products")
-public class ProductController {
+public class ProductController extends BaseController {
 
 	@Autowired
 	private ProductService productService;
 	
 	@PostMapping
-	public Mono<Product> saveProduct(@RequestBody Product product){
+	public Mono<Product> saveProduct(@RequestBody @Valid Product product){
 		return productService.saveProduct(product);
 	}
 	

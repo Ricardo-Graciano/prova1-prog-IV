@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import br.ueg.prova1ProgIV.dtos.ProductUpdateDTO;
 import br.ueg.prova1ProgIV.models.Product;
-import br.ueg.prova1ProgIV.models.Sell;
 import br.ueg.prova1ProgIV.repositories.ProductRepository;
 import br.ueg.prova1ProgIV.repositories.UserRepository;
 import reactor.core.publisher.Flux;

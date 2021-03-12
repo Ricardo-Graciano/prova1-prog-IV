@@ -50,5 +50,4 @@ public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
 				.body(BodyInserters.fromValue(errorAttributesMap));
 		
 	}
-
 }
